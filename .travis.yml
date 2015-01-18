@@ -13,9 +13,8 @@ deploy:
   provider: openshift
   user: denis.shybeko@gmail.com
   password:
-    secure: dXUxL2EwqyGXswvvAY7ZTpUwc5l8pBcnCQi6uNecl1q2XjyvFgCKdLSb8nsdC3OWikpKMf5WdN/X3WDVnyxS9qD1o2lXVSKJIjAXK+U5vWV8ibX9Om7x6/bwLqixWAgoHQA5ufmwJfRSSAgaFUAr0LXH/rq5pYi1GQUUm79VWDo=
+    secure: WxJpDcSAiqsD6fTus709JXPr7jqOybSZypAZRsf8Uy3+zX/V7cbGFg28nipVD7s1qc7CzYgGByawLRKIX4BMSCLpqNJE8GwR3LtQyeaB2rwU98ISrN4sgWD9Lz7WN/QoLLB0lzabBKOwAeU9JfVrz4hDBTzKEcEqtWiERRTDh3E=
   app: bservice
   domain: bboards
   on:
     repo: dshybeka/bboards-service
-
