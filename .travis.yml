@@ -1,0 +1,21 @@
+language: groovy
+before_script:
+- chmod +x grailsw
+script:
+- ./grailsw refresh-dependencies
+- ./grailsw war
+- git config --global user.email "denis.shybeko@gmail.com"
+- git config --global user.name "Denis Shybeko"
+- git checkout master
+- git add webapps/bservice.war
+- git commit -m 'added war file'
+deploy:
+  provider: openshift
+  user: denis.shybeko@gmail.com
+  password:
+    secure: dXUxL2EwqyGXswvvAY7ZTpUwc5l8pBcnCQi6uNecl1q2XjyvFgCKdLSb8nsdC3OWikpKMf5WdN/X3WDVnyxS9qD1o2lXVSKJIjAXK+U5vWV8ibX9Om7x6/bwLqixWAgoHQA5ufmwJfRSSAgaFUAr0LXH/rq5pYi1GQUUm79VWDo=
+  app: bservice
+  domain: bboards
+  on:
+    repo: dshybeka/bboards-service
+    all_branches: true
