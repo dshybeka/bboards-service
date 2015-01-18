@@ -4,7 +4,7 @@ import grails.test.mixin.Mock
 import spock.lang.Specification
 
 @Mock(CorsFilterFilters)
-class CorsFilterFiltersSpec extends Specification {
+class CorsFiltersSpec extends Specification {
 
     def setup() {
     }
