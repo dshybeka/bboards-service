@@ -19,4 +19,10 @@ enum DisplayZoom {
     private DisplayZoom(final Integer value) {
         this.value = value;
     }
+
+
+    @Override
+    public String toString() {
+        return value
+    }
 }
