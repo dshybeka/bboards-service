@@ -1,6 +1,6 @@
 package org.bboards.service.domains
 
-import org.bboards.service.domains.enums.DisplayZoom
+import org.apache.commons.lang.StringUtils
 
 class Position {
 
@@ -16,5 +16,11 @@ class Position {
         lat nullable: true
         lng nullable: true
         zoom nullable: true, inList: (5..21).toList()
+    }
+
+    Boolean isPresented() {
+        StringUtils.isNotEmpty(lat) &&
+                StringUtils.isNotEmpty(lng) &&
+                zoom != null
     }
 }
