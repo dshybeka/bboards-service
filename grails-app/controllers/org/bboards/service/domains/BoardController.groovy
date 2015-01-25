@@ -14,4 +14,13 @@ class BoardController {
         }]
         render result as JSON
     }
+
+    def getBoard() {
+
+        Board board = Board.get(params.id)
+
+        def result = [success: true, model: board]
+
+        render result as JSON
+    }
 }

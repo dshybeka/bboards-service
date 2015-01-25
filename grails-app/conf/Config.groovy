@@ -105,6 +105,10 @@ log4j.main = {
         file name:'file', file:'logs/bservice.log'
     }
 
+    root {
+        debug()
+    }
+
     debug 'org.bboards'
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
