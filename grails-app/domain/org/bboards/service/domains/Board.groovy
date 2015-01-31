@@ -9,15 +9,9 @@ class Board {
 
     String boardFormat
 
-    Address address
-
-    String dayPhotoUrl
-
     String sides
 
     String sideDirections
-
-    String nightPhotoUrl
 
     Surface surface
 
@@ -57,21 +51,32 @@ class Board {
 
     Position mapPosition
 
-    static embedded = ['timetables', 'mapPosition']
+    Photo nightPhoto
+
+    Photo dayPhoto
+
+    Address address
+
+    static hasMany = [dayPhoto: Photo, nightPhoto: Photo]
+
+    static embedded = ['timetables', 'mapPosition', 'nightPhoto', 'dayPhoto', 'address']
 
     static mapWith = "mongo"
 
     static mapping = {
         mapPosition cascade: "save-update,delete"
+        nightPhoto cascade: "save-update,delete"
+        dayPhoto cascade: "save-update,delete"
+        address cascade: "save-update,delete"
     }
 
     static constraints = {
         boardFormat nullable: true
         address nullable: true
-        dayPhotoUrl nullable: true
+        dayPhoto nullable: true
         sides nullable: true
         sideDirections nullable: true
-        nightPhotoUrl nullable: true
+        nightPhoto nullable: true
         surface nullable: true
         installationPrice nullable: true
 

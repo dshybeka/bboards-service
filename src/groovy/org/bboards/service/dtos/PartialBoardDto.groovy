@@ -1,5 +1,6 @@
 package org.bboards.service.dtos
 
+import org.bboards.service.domains.Photo
 import org.bboards.service.domains.Position
 
 /**
@@ -10,4 +11,6 @@ class PartialBoardDto {
     Position mapPosition
     BigDecimal price
     String additionalDescription
+    Photo dayPhoto
+    Photo nightPhoto
 }

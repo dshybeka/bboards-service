@@ -10,7 +10,8 @@ class BoardController {
         def boards = Board.getAll()
 
         def result = [success: true, model: boards.collect { Board board ->
-            new PartialBoardDto(id: board.id.toString(), mapPosition: board.mapPosition, price: board.price, additionalDescription: board.additionalDescription)
+            new PartialBoardDto(id: board.id.toString(), mapPosition: board.mapPosition, price: board.price, additionalDescription: board.additionalDescription,
+                dayPhoto: board.getDayPhoto(), nightPhoto: board.getNightPhoto())
         }]
         render result as JSON
     }
