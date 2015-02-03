@@ -1,6 +1,7 @@
 package org.bboards.service.dtos
 
 import groovy.transform.ToString
+import org.bboards.service.domains.Photo
 import org.bboards.service.domains.Position
 import org.bboards.service.domains.Timetable
 
@@ -14,4 +15,6 @@ class PartialBoardDto {
     BigDecimal price
     String additionalDescription
     List<Timetable> timetables
+    Photo dayPhoto
+    Photo nightPhoto
 }
