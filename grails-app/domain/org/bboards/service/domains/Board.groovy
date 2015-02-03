@@ -33,7 +33,7 @@ class Board {
 
     BigDecimal installationPrice
 
-    Timetable timetables
+    List<Timetable> timetables
 
     String notes
 

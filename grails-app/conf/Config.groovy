@@ -110,6 +110,8 @@ log4j.main = {
     }
 
     debug 'org.bboards'
+    debug 'com.odobo.grails'
+    debug 'org.springframework.security'
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
             'org.codehaus.groovy.grails.web.pages',          // GSP
@@ -123,3 +125,88 @@ log4j.main = {
             'org.hibernate',
             'net.sf.ehcache.hibernate'
 }
+
+//grails.plugin.springsecurity.rejectIfNoRule = false
+//grails.plugin.springsecurity.fii.rejectPublicInvocations = false
+grails {
+    plugin {
+        springsecurity {
+            filterChain {
+                chainMap = [
+                        '/rest/**': 'JOINED_FILTERS,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter,-rememberMeAuthenticationFilter',
+//                        '/rest/secure/**': 'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter'
+                ]
+            }
+            //Other Spring Security settings
+            //...
+
+            rest {
+                token {
+                    validation {
+                        enableAnonymousAccess = true
+                    }
+                    storage {
+                        useGrailsCache = true
+                        grailsCacheName = 'secure-tokens'
+                    }
+                }
+                login {
+                    endpointUrl = '/rest/login'
+                }
+                logout {
+                    endpointUrl = '/rest/logout'
+                }
+            }
+        }
+    }
+}
+
+grails.cache.config = {
+    cache {
+        name 'secure-tokens'
+        eternal false
+        overflowToDisk true
+        maxElementsInMemory 1000
+    }
+}
+
+
+//// Added by the Spring Security Core plugin:
+//grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.bboards.service.domains.User'
+//grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.bboards.service.domains.UserRole'
+//grails.plugin.springsecurity.authority.className = 'org.bboards.service.domains.Role'
+//grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
+//grails.plugin.springsecurity.interceptUrlMap = [
+//        '/':                    ['permitAll'],
+//        '/rest/login':          ['permitAll'],
+//        '/assets/**':           ['permitAll'],
+//        '/partials/**':         ['permitAll'],
+////        '/**':         ['permitAll'],
+//        '/**':                  ['isFullyAuthenticated()']
+//]
+
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.bboards.service.domains.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.bboards.service.domains.UserRole'
+grails.plugin.springsecurity.authority.className = 'org.bboards.service.domains.Role'
+grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
+grails.plugin.springsecurity.interceptUrlMap = [
+//        '/':                    ['permitAll'],
+////        '/rest/login':          ['permitAll'],
+//        '/login/auth':          ['permitAll'],
+//        '/assets/**':           ['permitAll'],
+//        '/partials/**':         ['permitAll'],
+//        '/rest/boards':         ['permitAll'],
+//        '/**':                  ['isFullyAuthenticated()']
+        '/**':                  ['permitAll']
+]
+
+grails.plugin.springsecurity.rememberMe.persistent = false
+grails.plugin.springsecurity.rest.login.useJsonCredentials = true
+grails.plugin.springsecurity.rest.login.failureStatusCode = 401
+grails.plugin.springsecurity.rest.token.storage.useGorm = true
+grails.plugin.springsecurity.rest.token.storage.gorm.tokenDomainClassName = 'org.bboards.service.domains.AuthenticationToken'
+grails.plugin.springsecurity.rest.token.storage.gorm.tokenValuePropertyName = 'token'
+grails.plugin.springsecurity.rest.token.storage.gorm.usernamePropertyName = 'username'
+
+
+

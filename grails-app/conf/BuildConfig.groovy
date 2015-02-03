@@ -3,8 +3,8 @@ grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
 grails.project.work.dir = "target/work"
-grails.project.target.level = 1.6
-grails.project.source.level = 1.6
+grails.project.target.level = 1.7
+grails.project.source.level = 1.7
 grails.project.war.file = "webapps/bservice.war"
 
 grails.project.fork = [
@@ -51,6 +51,11 @@ grails.project.dependency.resolution = {
         // runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0.2-grails-2.4"
+
+        // needed by spring security?
+        compile "net.sf.ehcache:ehcache-core:2.4.8"
+
+//        compile "org.jadira.usertype:usertype.jodatime:1.9"
     }
 
     plugins {
@@ -70,6 +75,8 @@ grails.project.dependency.resolution = {
         compile ":mongodb:3.0.2"
         compile ":mongo-jodatime:0.1.4"
 
+        compile ':spring-security-core:2.0-RC4'
+        compile ":spring-security-rest:1.4.1"
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.9.0"
         //compile ":less-asset-pipeline:1.10.0"

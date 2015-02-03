@@ -1,15 +1,24 @@
 package org.bboards.service.domains
 
+import net.spantree.mongo.types.jodatime.LocalDateTimeType
 import org.joda.time.LocalDateTime
 
 class Timetable {
 
-    private LocalDateTime startDate;
+    LocalDateTime startDate
 
-    private LocalDateTime endDate;
+    LocalDateTime endDate
 
     static mapWith = "mongo"
 
-    static constraints = {
+    static mapping = {
+        startDate type: LocalDateTimeType
+        endDate type: LocalDateTimeType
     }
+
+    static constraints = {
+        startDate nullable: true
+        endDate nullable: true
+    }
+
 }
