@@ -7,6 +7,7 @@ script:
 - git config --global user.email "denis.shybeko@gmail.com"
 - git config --global user.name "Denis Shybeko"
 - git checkout master
+- git add .openshift/*
 - git add webapps/bservice.war
 - git commit -m 'added war file'
 deploy:
@@ -17,4 +18,4 @@ deploy:
   app: bservice
   domain: bboards
   on:
-    repo: dshybeka/bboards-admin
+    repo: dshybeka/bboards-service
