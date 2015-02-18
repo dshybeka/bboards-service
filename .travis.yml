@@ -1,6 +1,4 @@
 language: groovy
-jdk:
-  - oraclejdk7
 before_script:
 - chmod +x grailsw
 script:
@@ -19,4 +17,4 @@ deploy:
   app: bservice
   domain: bboards
   on:
-    repo: dshybeka/bboards-service
+    repo: dshybeka/bboards-admin
