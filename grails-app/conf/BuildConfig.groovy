@@ -25,7 +25,7 @@ grails.project.dependency.resolver = "maven" // or ivy
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
-        // specify dependency exclusions here; for example, uncomment this to disable ehcache:
+        // specify dependency exclusions here; for example, uncomment this to disable ehcache:test
         // excludes 'ehcache'
     }
     log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
