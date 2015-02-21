@@ -1,8 +1,8 @@
 import grails.converters.JSON
-import org.bboards.service.domains.Role
 import org.bboards.service.domains.Timetable
-import org.bboards.service.domains.User
 import org.bson.types.ObjectId
+import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.DateTimeFormatter
 
 class BootStrap {
 
@@ -13,10 +13,10 @@ class BootStrap {
         }
 
         JSON.registerObjectMarshaller(Timetable) {
-            println "parse following Timetable " + it?.startDate + " --> " + it?.endDate
+            DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yyyy");
             return [
-                    startDate: it?.startDate,
-                    endDate: it?.endDate
+                    startDate: it ?  fmt.print(it.startDate) : null,
+                    endDate: it ?  fmt.print(it.endDate) : null
             ]
         }
 

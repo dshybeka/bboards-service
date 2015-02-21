@@ -27,7 +27,7 @@ class Board {
 
     BigDecimal installationPrice
 
-    List<Timetable> timetables
+    List<Timetable> timetables = new ArrayList()
 
     String notes
 
