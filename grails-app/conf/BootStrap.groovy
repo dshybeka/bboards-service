@@ -23,7 +23,8 @@ class BootStrap {
 //        println "before userrole "aaa
 //        User.withTransaction {
 //
-//            def userRole = new Role(authority:"ROLE_USER").save(flush:true)
+//            def userRole = new Role(authority:"ROLE_USER")
+//.save(flush:true)
 //            def user = new User()
 //            user.username = "username"
 //            user.password = "password"

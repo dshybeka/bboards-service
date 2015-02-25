@@ -40,9 +40,7 @@ class MongoUserDetailsService implements GrailsUserDetailsService {
                 }
             }
 
-            if(log.debugEnabled) {
-                log.debug("User roles: $roles")
-            }
+            log.debug("User roles: $roles")
 
             log.debug "Befre creating grails user!"
             GrailsUser grailsUser = createUserDetails(user, roles)

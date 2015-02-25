@@ -126,8 +126,8 @@ log4j.main = {
             'net.sf.ehcache.hibernate'
 }
 
-//grails.plugin.springsecurity.rejectIfNoRule = false
-//grails.plugin.springsecurity.fii.rejectPublicInvocations = false
+grails.plugin.springsecurity.rejectIfNoRule = true
+grails.plugin.springsecurity.fii.rejectPublicInvocations = false
 grails {
     plugin {
         springsecurity {
@@ -143,7 +143,7 @@ grails {
             rest {
                 token {
                     validation {
-                        enableAnonymousAccess = true
+                        enableAnonymousAccess = false
                     }
                     storage {
                         useGrailsCache = true
@@ -170,34 +170,22 @@ grails.cache.config = {
     }
 }
 
-
-//// Added by the Spring Security Core plugin:
-//grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.bboards.service.domains.User'
-//grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.bboards.service.domains.UserRole'
-//grails.plugin.springsecurity.authority.className = 'org.bboards.service.domains.Role'
-//grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
-//grails.plugin.springsecurity.interceptUrlMap = [
-//        '/':                    ['permitAll'],
-//        '/rest/login':          ['permitAll'],
-//        '/assets/**':           ['permitAll'],
-//        '/partials/**':         ['permitAll'],
-////        '/**':         ['permitAll'],
-//        '/**':                  ['isFullyAuthenticated()']
-//]
-
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'org.bboards.service.domains.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'org.bboards.service.domains.UserRole'
 grails.plugin.springsecurity.authority.className = 'org.bboards.service.domains.Role'
 grails.plugin.springsecurity.securityConfigType = 'InterceptUrlMap'
 grails.plugin.springsecurity.interceptUrlMap = [
 //        '/':                    ['permitAll'],
-////        '/rest/login':          ['permitAll'],
+        '/rest/login':          ['permitAll'],
+        '/rest/user/register':          ['permitAll'],
 //        '/login/auth':          ['permitAll'],
 //        '/assets/**':           ['permitAll'],
 //        '/partials/**':         ['permitAll'],
-//        '/rest/boards':         ['permitAll'],
+        '/rest/boards':         ['permitAll'],
+        '/rest/boards/**':         ['ROLE_USER'],
 //        '/**':                  ['isFullyAuthenticated()']
-        '/**':                  ['permitAll']
+//        '/**':                  ['permitAll']
+        '/rest/health':                  ['permitAll']
 ]
 
 grails.plugin.springsecurity.rememberMe.persistent = false

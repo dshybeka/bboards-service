@@ -14,7 +14,12 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
 
-	Set authorities
+	// TODO: move to user details domain
+	String phone
+	String fio
+	String email
+
+	Set<Role> authorities
 
 	static transients = ['springSecurityService']
 
@@ -23,17 +28,21 @@ class User {
 	static mapWith = "mongo"
 
 	static constraints = {
-		username blank: false, unique: true, size: 2..32, matches: "[a-zA-z0-9_]+"
+		username blank: false, unique: true, size: 2..32, matches: "[.@a-zA-z0-9_/W]+"
 		password blank: false
+		phone nullable: true
+		fio nullable: true
+		email nullable: true
 	}
 
 	static mapping = {
 		password column: '`password`'
+		authorities cascade: 'all-delete-orphan'
 	}
 
-	Set<Role> getAuthorities() {
-		UserRole.findAllByUser(this).collect { it.role }
-	}
+//	Set<Role> getAuthorities() {
+//		UserRole.findAllByUser(this).collect { it.role }
+//	}
 
 	def beforeInsert() {
 		println "start before insert user "
