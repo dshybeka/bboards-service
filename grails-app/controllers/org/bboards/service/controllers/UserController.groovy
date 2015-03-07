@@ -7,6 +7,8 @@ import org.bboards.service.controllers.commands.QuickRegistrationInfoCommand
 import org.bboards.service.domains.Role
 import org.bboards.service.domains.User
 
+import static org.bboards.service.domains.User.*
+
 @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
 class UserController {
 
@@ -26,7 +28,7 @@ class UserController {
                 fio: quickRegistrationInfoCommand.fio)
 
         newUser.authorities = [Role.findByAuthority("ROLE_USER")]
-        User.withTransaction {
+        withTransaction {
             isSuccess = newUser.save(flush: true)
             log.debug("newUser " + newUser.errors)
             if (isSuccess) {
@@ -36,6 +38,22 @@ class UserController {
         }
 
         def resultMap = [success: isSuccess != null, message: ""]
+        render resultMap as JSON
+    }
+
+    @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
+    def getUser() {
+
+        log.info "Get user for username $params.username "
+
+        String username = params.username
+
+        def user = User.findByUsername(username)
+
+        log.info "Found following user: $user"
+
+        def resultMap = [success: user != null, message: "", model: user]
+
         render resultMap as JSON
     }
 }
