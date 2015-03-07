@@ -13,7 +13,7 @@ class BootStrap {
         }
 
         JSON.registerObjectMarshaller(Timetable) {
-            DateTimeFormatter fmt = DateTimeFormat.forPattern("dd/MM/yyyy");
+            DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-mm-dd");
             return [
                     startDate: it ?  fmt.print(it.startDate) : null,
                     endDate: it ?  fmt.print(it.endDate) : null
