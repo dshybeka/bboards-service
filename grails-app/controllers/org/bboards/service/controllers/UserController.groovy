@@ -3,6 +3,7 @@ package org.bboards.service.controllers
 import com.odobo.grails.plugin.springsecurity.rest.token.generation.TokenGenerator
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
+import org.bboards.service.controllers.commands.FullRegistrationInfoCommand
 import org.bboards.service.controllers.commands.QuickRegistrationInfoCommand
 import org.bboards.service.domains.Role
 import org.bboards.service.domains.User
@@ -16,7 +17,7 @@ class UserController {
 
     def register(QuickRegistrationInfoCommand quickRegistrationInfoCommand) {
 // TODO: check command object errors
-        log.debug("quickRegistrationInfoCommand " + quickRegistrationInfoCommand)
+        log.debug("fullRegistrationInfoCommand " + quickRegistrationInfoCommand)
 
         Boolean isSuccess
         String token = ""
@@ -41,7 +42,15 @@ class UserController {
         render resultMap as JSON
     }
 
-    @Secured("IS_AUTHENTICATED_ANONYMOUSLY")
+    def fullRegister(FullRegistrationInfoCommand fullRegistrationInfoCommand) {
+
+        log.debug("Start full registration " + fullRegistrationInfoCommand)
+
+        def resultMap = fullRegistrationInfoCommand.doUpdate()
+
+        render resultMap as JSON
+    }
+
     def getUser() {
 
         log.info "Get user for username $params.username "
@@ -50,7 +59,7 @@ class UserController {
 
         def user = User.findByUsername(username)
 
-        log.info "Found following user: $user"
+        log.info "Found following user: $user, userDetails: ${user.userDetails}"
 
         def resultMap = [success: user != null, message: "", model: user]
 

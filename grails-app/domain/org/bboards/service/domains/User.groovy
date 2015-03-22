@@ -14,30 +14,26 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
 
-	// TODO: move to user details domain
-	String phone
-	String fio
-	String email
+	UserDetails userDetails
 
 	Set<Role> authorities
 
 	static transients = ['springSecurityService']
 
-	static embedded = ['authorities']
+	static embedded = ['authorities', 'userDetails']
 
 	static mapWith = "mongo"
 
 	static constraints = {
 		username blank: false, unique: true, size: 2..32, matches: "[.@a-zA-z0-9_/W]+"
 		password blank: false
-		phone nullable: true
-		fio nullable: true
-		email nullable: true
+		userDetails nullable: true
 	}
 
 	static mapping = {
 		password column: '`password`'
 		authorities cascade: 'all-delete-orphan'
+		userDetails cascade: 'all-delete-orphan'
 	}
 
 //	Set<Role> getAuthorities() {
