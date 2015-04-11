@@ -23,7 +23,10 @@ class BoardController {
                                 mapPosition: board.mapPosition,
                                 price: board.price,
                                 additionalDescription: board.additionalDescription,
-                                timetables: board.timetables)
+                                timetables: board.timetables,
+                                surfaceName: board.surface?.surfaceName,
+                                address: board.address,
+                                entertainmentCenters: board.entertainmentCenters?.toLowerCase())
         }]
         render result as JSON
     }
