@@ -1,7 +1,5 @@
 package org.bboards.service.domains
 
-import org.bboards.service.domains.enums.Distinct
-
 class Address {
 
     String fullAddress

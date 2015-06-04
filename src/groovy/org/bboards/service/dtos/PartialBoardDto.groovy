@@ -1,6 +1,7 @@
 package org.bboards.service.dtos
 
 import groovy.transform.ToString
+import org.bboards.service.domains.Address
 import org.bboards.service.domains.Photo
 import org.bboards.service.domains.Position
 import org.bboards.service.domains.Timetable
@@ -17,4 +18,7 @@ class PartialBoardDto {
     List<Timetable> timetables
     Photo dayPhoto
     Photo nightPhoto
+    String surfaceName
+    Address address
+    String entertainmentCenters
 }
