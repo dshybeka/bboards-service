@@ -9,9 +9,9 @@ class Order {
 
     ObjectId id
 
-    String boardId
+    Board board
 
-    String customer
+    User customer
 
     LocalDateTime startDate
     LocalDateTime endDate

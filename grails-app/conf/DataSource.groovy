@@ -21,7 +21,9 @@ grails {
         username = "bboards_user"
         password = "bboards_dev"
         databaseName = "bboards"
+        logSql = true
     }
+    logSql = true
 }
 
 // environment specific settings
